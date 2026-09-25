@@ -1,0 +1,63 @@
+# ---- 项目级本地仓 ----
+node_modules/
+dist/
+build/
+out/
+__pycache__/
+*.pyc
+*.pyo
+logs/
+tmp/
+data/
+*.log
+*.out
+# 改动前的时间戳备份
+*.bak-*
+_trash/
+# 凭据/私钥：绝不进仓
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+credentials.yaml
+# 大件（二进制/安装包）
+*.exe
+*.zip
+*.7z
+*.iso
+*.onnx
+*.mp4
+*.bin
+*.img
+*.dll
+*.whl
+*.tar.gz
+.DS_Store
+Thumbs.db
+# ---- 公开版排除 ----
+# 第三方作品 / 其移植版（飞牛论坛 mspilot86，tid=65866，无许可协议）
+src/zt_fnos.py
+src/zt_fnos.py.bak-*
+src/fnos-encrypted-storage.sh
+src/fnos-tpm-storage.sh
+src/zt_fnos_tpm_unlock.sh.tmpl
+src/zt_fnos_tpm_unlock.service.tmpl
+src/zt_fnos_PLAN.md
+src/ZT_FUNCTION_MAP.md
+src/fnos_migration_audit.txt
+# 内部过程脚本与过程产物（按模式忽略，不点名具体文件）
+src/audit*.sh
+src/harden*.sh
+src/nas_*.sh
+src/_zt_gen_map.py
+work/
+*.bak-srccredit-*
+
+# 内部交接文档（按模式忽略，覆盖 HANDOVER.md / HANDOVER_PROMPT_*.md / *MIGRATION_HANDOVER*.md）
+HANDOVER*.md
+*MIGRATION_HANDOVER*.md
+
+# 原版基准（第三方原作者脚本，仅本地对照用，不进公开仓）
+ref/

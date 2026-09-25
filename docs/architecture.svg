@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="900" viewBox="0 0 1240 900" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+    </marker>
+    <marker id="arw2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+    </marker>
+  </defs>
+  <rect width="1240" height="900" fill="#0d1117"/>
+
+  <text x="48" y="58" font-size="27" font-weight="600" fill="#e6edf3">zfs-tool · 程序架构</text>
+  <text x="48" y="86" font-size="13.5" fill="#8b949e">ZFS 运维管理工具箱 + 飞牛 fnOS 加密存储 / TPM 2.0 · 纯标准库 · 单文件交付</text>
+  <line x1="48" y1="106" x2="1192" y2="106" stroke="#21262d"/>
+
+  <text x="48"  y="140" font-size="14" font-weight="600" fill="#58a6ff" letter-spacing="1">入口</text>
+  <text x="396" y="140" font-size="14" font-weight="600" fill="#58a6ff" letter-spacing="1">交付物与内部结构</text>
+  <text x="914" y="140" font-size="14" font-weight="600" fill="#58a6ff" letter-spacing="1">系统交互</text>
+
+  <g>
+    <rect x="48" y="158" width="300" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="68" y="187" font-size="15.5" font-weight="600" fill="#e6edf3">交互菜单</text>
+    <text x="68" y="209" font-size="12.5" fill="#8b949e">python3 zfs-tool.py</text>
+    <text x="68" y="231" font-size="12.5" fill="#8b949e">主菜单 + fnOS 菜单（第 25 项）</text>
+
+    <rect x="48" y="258" width="300" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="68" y="287" font-size="15.5" font-weight="600" fill="#e6edf3">CLI 子命令</text>
+    <text x="68" y="309" font-size="12.5" fill="#8b949e">本体命令 + fnOS / TPM 子命令 44 个</text>
+    <text x="68" y="331" font-size="12.5" fill="#8b949e">（两个入口的清单完全闭合）</text>
+
+    <rect x="48" y="358" width="300" height="88" rx="9" fill="#161b22" stroke="#30363d" stroke-dasharray="5 4"/>
+    <text x="68" y="387" font-size="15.5" font-weight="600" fill="#e6edf3">开发 / 调试模式</text>
+    <text x="68" y="409" font-size="12.5" fill="#8b949e">同目录放 zt_fnos.py + 两个 .tmpl</text>
+    <text x="68" y="431" font-size="12.5" fill="#8b949e">设 ZT_FNOS_EXTERNAL=1 走外部模块</text>
+  </g>
+  <line x1="348" y1="402" x2="392" y2="402" stroke="#58a6ff" stroke-width="2" marker-end="url(#arw)"/>
+  <line x1="866" y1="402" x2="910" y2="402" stroke="#8b949e" stroke-width="1.6" marker-end="url(#arw2)"/>
+
+  <g>
+    <rect x="396" y="158" width="470" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="416" y="187" font-size="15.5" font-weight="600" fill="#e6edf3">zfs-tool.py · 单文件交付物</text>
+    <text x="416" y="209" font-size="12.5" fill="#8b949e">本体（ZFS 运维）+ 内嵌 fnOS / TPM 模块</text>
+    <text x="416" y="231" font-size="12.5" fill="#58a6ff">部署时只需这一个文件</text>
+
+    <rect x="396" y="258" width="470" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="416" y="287" font-size="15.5" font-weight="600" fill="#e6edf3">单文件机制 _ZT_EMBED_B64</text>
+    <text x="416" y="309" font-size="12.5" fill="#8b949e">gzip(zt_fnos.py + 两个解锁模板) → base64 内嵌</text>
+    <text x="416" y="331" font-size="12.5" fill="#8b949e">加载时解压 exec —— 构建脚本 _zt_build_single.py</text>
+
+    <rect x="396" y="358" width="470" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="416" y="387" font-size="15.5" font-weight="600" fill="#e6edf3">fnOS / TPM 功能本体</text>
+    <text x="416" y="409" font-size="12.5" fill="#8b949e">zt_fnos.py（开发版）+ TPM 引导解锁模板</text>
+    <text x="416" y="431" font-size="12.5" fill="#8b949e">zt_fnos_tpm_unlock.sh.tmpl / .service.tmpl</text>
+
+    <rect x="396" y="458" width="470" height="88" rx="9" fill="#161b22" stroke="#30363d" stroke-dasharray="5 4"/>
+    <text x="416" y="487" font-size="15.5" font-weight="600" fill="#e6edf3">构建与审计工具链</text>
+    <text x="416" y="509" font-size="12.5" fill="#8b949e">_zt_build_single.py / _zt_audit_payload.py</text>
+    <text x="416" y="531" font-size="12.5" fill="#8b949e">_zt_audit_single_load.py · 函数地图 _zt_gen_map.py</text>
+  </g>
+
+  <g>
+    <rect x="914" y="158" width="278" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="934" y="187" font-size="15.5" font-weight="600" fill="#e6edf3">ZFS</text>
+    <text x="934" y="209" font-size="12.5" fill="#8b949e">zpool / zfs 命令</text>
+    <text x="934" y="231" font-size="12.5" fill="#8b949e">一律 argv 数组，无 shell 拼接</text>
+
+    <rect x="914" y="258" width="278" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="934" y="287" font-size="15.5" font-weight="600" fill="#e6edf3">fnOS</text>
+    <text x="934" y="309" font-size="12.5" fill="#8b949e">mount 表：sudo -u postgres psql -d trim</text>
+    <text x="934" y="331" font-size="12.5" fill="#8b949e">密钥目录 /etc/zfs/keys</text>
+
+    <rect x="914" y="358" width="278" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="934" y="387" font-size="15.5" font-weight="600" fill="#e6edf3">TPM 2.0</text>
+    <text x="934" y="409" font-size="12.5" fill="#8b949e">tpm2 工具：blob 密封 / 解封 / DA 策略</text>
+    <text x="934" y="431" font-size="12.5" fill="#8b949e">先 tpm-detect 确认设备再动手</text>
+
+    <rect x="914" y="458" width="278" height="88" rx="9" fill="#161b22" stroke="#30363d"/>
+    <text x="934" y="487" font-size="15.5" font-weight="600" fill="#e6edf3">输出纪律</text>
+    <text x="934" y="509" font-size="12.5" fill="#8b949e">提示 / 报错 → stderr · 日志 → &lt;ZT_LOG_DIR&gt;/zfs-tool.log</text>
+    <text x="934" y="531" font-size="12.5" fill="#8b949e">数据 → stdout（供命令替换与 --json 消费）</text>
+  </g>
+
+  <rect x="48" y="576" width="1144" height="286" rx="10" fill="#0f141b" stroke="#21262d"/>
+  <text x="72" y="610" font-size="14" font-weight="600" fill="#58a6ff" letter-spacing="1">设计要点与边界</text>
+
+  <circle cx="80" cy="642" r="4" fill="#58a6ff"/>
+  <text x="96" y="647" font-size="13" fill="#c9d1d9">纯标准库；外部命令一律 argv 数组（subprocess），不做 shell 拼接 —— 从根上防命令注入。</text>
+
+  <circle cx="80" cy="676" r="4" fill="#58a6ff"/>
+  <text x="96" y="681" font-size="13" fill="#c9d1d9">危险操作要先确认：confirm_destructive / confirm_single + 输名校验；设计原则是「先确认、后破坏」。</text>
+
+  <circle cx="80" cy="710" r="4" fill="#58a6ff"/>
+  <text x="96" y="715" font-size="13" fill="#c9d1d9">配置走环境变量：ZT_CONF_DIR / ZT_LOG_DIR / ZT_FNOS_EXTERNAL（不写死路径）。</text>
+
+  <circle cx="80" cy="744" r="4" fill="#58a6ff"/>
+  <text x="96" y="749" font-size="13" fill="#c9d1d9">fnOS 恢复链建议三通道：.key 备份 + TPM blob 完整备份 + 纸面恢复密钥 —— 少一条都可能救不回来。</text>
+
+  <circle cx="80" cy="778" r="4" fill="#58a6ff"/>
+  <text x="96" y="783" font-size="13" fill="#c9d1d9">⚠️ 危险路径（销毁池 / zpool add / 恢复向导执行 / 服务安装重启链）尚未真机完整回归 —— 请用测试盘，先读后跑。</text>
+
+  <circle cx="80" cy="812" r="4" fill="#58a6ff"/>
+  <text x="96" y="817" font-size="13" fill="#c9d1d9">质量状态：约 130+ 函数已逐函数核对，累计修复 18 处移植 bug；TPM blob 与 bash 版逐字节互读成立。</text>
+</svg>
